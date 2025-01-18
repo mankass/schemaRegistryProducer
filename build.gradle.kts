@@ -1,3 +1,5 @@
+import com.github.imflog.schema.registry.Subject
+
 plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
@@ -33,11 +35,15 @@ schemaRegistry {
     outputDirectory = "schemas/json/results/"
     pretty = true
     register{
-        subject("company", "src/main/json", "JSON")
-
+        subject("message","src/main/json/message.json","JSON")
+        subject("company", "src/main/json/company_v2.json", "JSON")
     }
+
     download{
         subject("company", "schemas/json/downloaded")
+    }
+    compatibility {
+        subject("company","src/main/json/company_v2.json","JSON")
     }
 }
 
@@ -47,6 +53,7 @@ repositories {
 }
 
 dependencies {
+    implementation("io.confluent:kafka-json-schema-provider:7.8.0")
     implementation("io.confluent:kafka-json-schema-serializer:7.8.0")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -56,6 +63,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("com.kjetland:mbknor-jackson-jsonschema_2.12:1.0.39")
+
 }
 
 kotlin {

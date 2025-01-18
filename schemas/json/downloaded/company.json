@@ -1,0 +1,36 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "company",
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "address" : {
+      "$ref" : "#address"
+    },
+    "thumbnail_url" : {
+      "type" : "string"
+    },
+    "company_type" : {
+      "type" : "string"
+    },
+    "sectors" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "sub_sectors" : {
+      "type" : [ "null", "array" ],
+      "items" : {
+        "type" : "string"
+      }
+    }
+  },
+  "required" : [ "id" ],
+  "additionalProperties" : false
+}

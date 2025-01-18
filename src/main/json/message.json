@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Message",
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "description": "Имя"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Фамилия"
+    },
+    "dateBorn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Дата рождения"
+    }
+  },
+  "required": [
+    "firstName",
+    "lastName",
+    "dateBorn"
+  ],
+  "additionalProperties": false
+}
